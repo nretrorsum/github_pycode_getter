@@ -1,7 +1,7 @@
 from httpx import AsyncClient, Timeout
 import base64
 import logging
-from core_functions import save_code_in_file, delete_file_content
+from src.core_functions import save_code_in_file, delete_file_content
 from config import GITHUB_API_TOKEN
 from fastapi import HTTPException
 
@@ -18,7 +18,6 @@ class GitHubDataRequest:
         logging.info(f'Github API token: {GITHUB_API_TOKEN}')
 
     async def fetch_file_content(self, url):
-        """Отримує вміст файлу за його URL."""
         timeout = Timeout(30.0)
         async with AsyncClient(timeout = timeout) as client:
             response = await client.get(url, headers=self.headers)
@@ -54,7 +53,6 @@ class GitHubDataRequest:
                 raise HTTPException(status_code=response.status_code, detail=f'Failed to fetch directory from {url}')
 
     async def get_repository_tree(self, owner: str, repo: str, branch: str):
-        """Отримує дерево проекту на основі гілки."""
         url = f"{self.base_url}/repos/{owner}/{repo}/git/trees/{branch}?recursive=1"
         async with AsyncClient() as client:
             r = await client.get(url, headers=self.headers)
