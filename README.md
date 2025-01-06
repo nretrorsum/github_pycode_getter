@@ -1,7 +1,7 @@
 # github_pycode_getter
 Small web application which get you code from GitHub repo
 
-Use statement:
+Instructions for installation:
 1) Use command: 
     ```
    git clone https://github.com/nretrorsum/github_pycode_getter.git
