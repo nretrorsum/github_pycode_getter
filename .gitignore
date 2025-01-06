@@ -1,0 +1,6 @@
+__pycache__/
+.idea/
+.gitignore
+src/.env
+code.txt
+.env
